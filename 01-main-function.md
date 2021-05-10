@@ -51,7 +51,7 @@ Third, the parentheses pair. We will leave it for now (go to the function chapte
 
 Finally, the int keyword. We will talk about it using this example.
 
-```
+```c
 int main() {
   return 0;
 }
@@ -59,3 +59,14 @@ int main() {
 
 A proper main() function should have a line: return *something*;  
 *something* here is usually a number, or more specific, an INTeger. Did you see where the 'int' come from? Basically, this is the return code for our program. If it's 0, the OS sees this number and said "Oh, this program exited successfully". But if it's not, the OS will know that there is something wrong with this program, and depends on your OS, maybe it will throw a huge error onto your screen like "App ... is not responding" (Windows doesn't do this though, it uses some more advanced method for checking for error).
+
+Another convenient thing is that not only number can be put to *something*, but you can put some complex expressions as well.
+
+```c
+int main() {
+  return 3 * 4 - 12;
+}
+```
+
+Since 3 * 4 - 12 is 0, this will have the same effect as return 0
+
