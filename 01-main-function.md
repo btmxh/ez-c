@@ -6,8 +6,8 @@ A lot of people start their C journey with this famous "Hello, World" program:
 #include <stdio.h>
 
 int main() {
-	printf("Hello, World!");
-	return 0;
+  printf("Hello, World!");
+  return 0;
 }
 ```
 
