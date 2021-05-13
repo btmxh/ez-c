@@ -18,6 +18,98 @@ In the unsigned world, 0xC5 is 197. And in order to make this value signed, you 
 
 That's the rule for storing integer. For floating-point numbers and text, the rule will be a little more complex, but you just need to understand this: basically everything on a computer is a bunch of bytes, a bunch of numbers ranging from 0 to 256 (or -128 to 127 in the signed world).
 
-Let's look at something bigger. 4 bytes. A lot of you should already heard about 32-bit and 64-bit, and when you translate them to bytes, you got 4-bytes and 8-bytes. While a byte is a "unit of storage" for a computer, a computer likes to work with things based on 4 or 8 bytes (depending on your CPU, there are also 16-bit CPU but no one uses them anyways, or if you use them, you should look at a more specific tutorial about them) 
+Let's look at something bigger. 4 bytes. A lot of you should already heard about 32-bit and 64-bit, and when you translate them to bytes, you got 4-byte and 8-byte. While a byte is a "unit of storage" for a computer, a computer likes to work with things based on 4 or 8 bytes (depending on your CPU, there are also 16-bit CPU but no one uses them anyways, or if you use them, you should look at a more specific tutorial about them) 
 
-The reason is, well, 256 is quite a big number, but you've already seen a lot of bigger numbers in a computer, right? There are even numbers which have more than 256 digits (in base 10). This is why 
+The reason is, well, 256 is quite a big number, but you've already seen a lot of bigger numbers in a computer, right? There are even numbers which have more than 256 digits (in base 10). This is why people like CPU to handle bigger number natively, so they invented 32-bit CPU, and then 64-bit CPU.
+
+This is why, int, a data type to store 32 bit integer, is widely used. But what exactly is a data type though?
+
+4 bytes. You can use it to store 4 8-bit integer (or bytes), 2 16-bit integer (or shorts), or 1 32-bit integer (or int). There are also 32-bit floats and stuff like that. Data type is a way to distinguish between them.
+
+OK, after all of this, we can finally use variables in our program. Let's look at this simple C program.
+
+```c
+int main() {
+  return (1 + 1) * (1 + 1);
+}
+```
+
+Yes, the compiler will optimize and replace the expression after return with 4, but let's pretend the compiler is dumb and will make the program do all of the calculations. The expression consists of 2 additions and 1 multiplication. We also sees that the expression (1 + 1) is computed twice, so it would be best to store that value to somewhere else and do only 1 addition and 1 multiplication. Variables will help us achieve this.
+
+First we need to declare a variable. We will need a place in memory to store our result to (1 + 1), so we asked the program for some memory by just calling:
+
+```c
+int x;
+```
+
+Also we will call our variable 'x', since you will need not just one variable in C, and you'll need to distinguish between them. Depends on where you put that line (inside or outside main() function), the memory for x will be in different places.
+
+Next, you store the result of 1 + 1 to x:
+
+```c
+x = 1 + 1;
+```
+
+This line must be inside the main() function, since you're asking the computer to do stuff, and main() is where all of your directives are. And if you previously put the "int x;" line after main(), there will be an error, since the C compiler read your code line by line. When it read your "x = 1 + 1;" line, it will not know what x is. So you have to move your declaration of x before or inside the main() function
+
+(Like this:
+```c
+int x;
+
+int main() {
+  x = 1 + 1;
+}
+```
+)
+
+Finally, the return statement. It should be
+```c
+return x * x;
+```
+
+And your final code should be:
+
+```c
+int x;
+
+int main() {
+  x = 1 + 1;
+  return x * x;
+}
+```
+
+or 
+
+```c
+int main() {
+  int x;
+  x = 1 + 1;
+  return x * x;
+}
+```
+
+There are still a lot of thing worth mentioning.
+
+First, if you go for the second approach (declare x in main()), you can combine your first two lines to just
+```c
+int x = 1 + 1;
+```
+
+Second, you should go for the second approach, because you can do the thing I've just mention earlier, and you can't access x from anywhere else than your main() function. This will make stuff a lot easier to handle. (more restriction = better code, usually)
+
+Third. We will talk about pointers. This is going to be long.
+
+Since C is a low-level language, there is the concept of pointers. They are address for a block of memory. Let me explain.
+
+Let's look at the previous program:
+
+```c
+int main() {
+  int x = 1 + 1;
+  return x * x;
+}
+```
+
+On the return line, what do you think the CPU will do? It'll load the value from x, multiply that value with itself, and then return it to the OS or something, right? But where exactly would it load the value from?
+
+The answer to that question is the pointer of x, written as &x in C. This is where x is stored. (You will also ask yourself, where is &x stored? Quick answer, on the stack. But
