@@ -29,7 +29,7 @@ int main() {
 
 If CODE_THAT_MAKE_THIS_PROGRAM_PRINT_HELLO_WORLD does its thing (which is 'make this program print "HELLO_WORLD"'), this program should print "HELLO_WORLD" three times.
 
-But what is int, why are there some weird stuff like 'int', a pair of parentheses and brackets, also the semicolons too?
+But why are there some weird stuff like 'int', a pair of parentheses and brackets, also the semicolons too?
 
 Let's look at them one by one.
 
@@ -45,7 +45,7 @@ int main() { CODE_THAT_MAKE_THIS_PROGRAM_PRINT_HELLO_WORLD CODE_THAT_MAKE_THIS_P
 ```
 the compiler would not know what to print, something like "HELLO_WORLD CODE_THAT_MAKE_THIS_PROGRAM_PRINT_HELLO_WORLD CODE_THAT_MAKE_THIS_PROGRAM_PRINT_HELLO_WORLD". Yes this is not a proper C program, but in C, the similar thing will happen without semicolons, so you need them to separate your directives.
 
-The next thing, the bracket pair. This is used to separate code inside main() function with code() outside it. Yeah, this is kinda self-explanatory.
+The next thing, the bracket pair. This is used to separate code inside main() function with code outside it. Yeah, this is kinda self-explanatory.
 
 Third, the parentheses pair. We will leave it for now (go to the function chapter for the reason).
 
@@ -58,7 +58,7 @@ int main() {
 ```
 
 A proper main() function should have a line: return *something*;  
-*something* here is usually a number, or more specific, an INTeger. Did you see where the 'int' come from? Basically, this is the return code for our program. If it's 0, the OS sees this number and said "Oh, this program exited successfully". But if it's not, the OS will know that there is something wrong with this program, and depends on your OS, maybe it will throw a huge error onto your screen like "App ... is not responding" (Windows doesn't do this though, it uses some more advanced method for checking for error).
+*something* here is usually a number, or more specific, an INTeger. Did you see where the 'int' come from? Basically, this is the return code for our program. If it's 0, the OS sees this number and said "Oh, this program exited successfully". But if it's not, the OS will know that there is something wrong with this program, and depends on your OS, maybe it will throw a huge error onto your screen like "App ... crashed" (Windows doesn't do this though, it uses some more advanced method for checking for error).
 
 Another convenient thing is that not only number can be put to *something*, but you can put some complex expressions as well.
 
